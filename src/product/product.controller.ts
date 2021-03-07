@@ -45,7 +45,7 @@ export class ProductsController {
 
   /**
    * Get a specific product by ID
-   * @param prodId : MongoID
+   * @param prodId : String
    */
   @Get(':id')
   getProduct(@Param('id') prodId: string) {
@@ -54,21 +54,21 @@ export class ProductsController {
 
   /**
    * Update a specific product by ID
-   * @param prodId : MongoID
-   * @param prodTitle : String
-   * @param prodDesc : String
-   * @param prodPrice : Number
+   * @param productId : String
+   * @param productName : String
+   * @param productDesc : String
+   * @param productPrice : Number
    */
   @Patch(':id')
   async updateProduct(
     @Param('id') productId: string,
-    @Body('title') productTitle: string,
+    @Body('name') productName: string,
     @Body('description') productDesc: string,
     @Body('price') productPrice: number,
   ) {
     const result = await this.productsService.updateProduct(
       productId,
-      productTitle,
+      productName,
       productDesc,
       productPrice,
     );
@@ -77,7 +77,7 @@ export class ProductsController {
 
   /**
    * Delete a specific product by ID
-   * @param prodId : MongoID
+   * @param productId : String
    */
   @Delete(':id')
   async removeProduct(@Param('id') productId: string) {
